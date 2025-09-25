@@ -1,94 +1,68 @@
 {
-  "name": "selenium-webdriver-mcp",
+  "name": "@iflow-mcp/selenium-webdriver-mcp",
   "version": "0.4.1",
-  "mcpName": "io.github.pshivapr/selenium-mcp",
-  "description": "Selenium Tools for MCP",
-  "type": "module",
+  "description": "A Model Context Protocol (MCP) server for Selenium WebDriver automation",
+  "main": "dist/index.js",
   "bin": {
     "selenium-webdriver-mcp": "dist/index.js"
   },
-  "files": [
-    "dist/**/*",
-    "README.md",
-    "LICENSE",
-    "CHANGELOG.md",
-    "version.config.json"
-  ],
-  "author": {
-    "name": "V S Pasham"
-  },
-  "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "tsc && npm run copy:config",
     "copy:config": "node -e \"const fs=require('fs'); fs.copyFileSync('version.config.json', 'dist/version.config.json');\"",
-    "copy": "cp version.config.json dist/",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts --exec tsx",
-    "clean": "rm -rf dist",
+    "dev": "tsx src/index.ts",
+    "test": "jest",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "format": "prettier --write src/**/*.{ts,js,json}",
-    "format:check": "prettier --check src/**/*.{ts,js,json}",
-    "type-check": "tsc --noEmit",
-    "build:stdio": "tsc",
-    "build:http": "npx @smithery/cli build",
-    "build:test": "npm run build && npm run test",
-    "start:http": "node .smithery/index.cjs",
-    "start:stdio": "node dist/index.js",
-    "prepublishOnly": "npm run version:sync && npm run build:stdio",
-    "prepare": "husky install",
-    "test": "npm run build && node --test test/**/*.test.js",
-    "test:watch": "npm run build && node --test --watch test/**/*.test.js",
-    "test:health": "npm run build && node --test test/health-check.test.js",
-    "version:sync": "node scripts/sync-version.js",
-    "cleanup": "node scripts/cleanup.js"
+    "format": "prettier --write src/**/*.ts",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "mcp",
+    "selenium",
+    "webdriver",
+    "automation",
+    "browser",
+    "testing",
+    "model-context-protocol"
+  ],
+  "author": "Prashant Shivaprasad",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "selenium-webdriver": "^4.27.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.9.0",
+    "@types/selenium-webdriver": "^4.1.27",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
   },
   "lint-staged": {
-    "*.{ts,js}": [
+    "*.ts": [
       "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md}": [
       "prettier --write"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pshivapr/selenium-mcp.git"
+    "url": "git+https://github.com/pshivapr/selenium-mcp.git"
   },
-  "keywords": [
-    "selenium",
-    "webdriver",
-    "selenium-webdriver",
-    "mcp",
-    "modelcontextprotocol",
-    "automation"
-  ],
   "bugs": {
     "url": "https://github.com/pshivapr/selenium-mcp/issues"
   },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.3",
-    "selenium-webdriver": "^4.35.0",
-    "winston": "^3.17.0",
-    "zod": "^3.25.76"
-  },
-  "devDependencies": {
-    "@types/node": "^24.3.1",
-    "@types/selenium-webdriver": "^4.1.28",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0",
-    "esbuild": "^0.25.9",
-    "esbuild-node-externals": "^1.18.0",
-    "eslint": "^9.35.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "husky": "^8.0.3",
-    "lint-staged": "^16.1.6",
-    "nodemon": "^3.1.10",
-    "prettier": "^3.6.2",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.20.4",
-    "typescript": "^5.9.2"
-  }
+  "homepage": "https://github.com/pshivapr/selenium-mcp#readme"
 }
