@@ -7,6 +7,11 @@
     "selenium-webdriver-mcp": "dist/index.js"
   },
   "type": "module",
+  "files": [
+    "dist/**/*",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc && npm run copy:config",
     "copy:config": "node -e \"const fs=require('fs'); fs.copyFileSync('version.config.json', 'dist/version.config.json');\"",
